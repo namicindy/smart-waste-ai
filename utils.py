@@ -1,7 +1,7 @@
 from torchvision import transforms, datasets
 from torch.utils.data import DataLoader, random_split
 
-# 📏 Transformer les images pour le modèle
+# Transformer les images pour le modèle
 def get_transforms():
     return transforms.Compose([
         transforms.Resize((224, 224)),      # Redimensionner en 224x224
@@ -13,7 +13,7 @@ def get_transforms():
         )
     ])
 
-# 📦 Charger le dataset
+# Charger le dataset
 def get_dataloaders(data_dir, batch_size=32):
     dataset = datasets.ImageFolder(data_dir, transform=get_transforms())
 
@@ -26,7 +26,7 @@ def get_dataloaders(data_dir, batch_size=32):
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
 
-    print(f"✅ Dataset chargé : {len(dataset)} images")
+    print(f" Dataset chargé : {len(dataset)} images")
     print(f"   → Entraînement : {train_size} images")
     print(f"   → Test : {test_size} images")
     print(f"   → Classes : {dataset.classes}")

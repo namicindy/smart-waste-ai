@@ -4,14 +4,14 @@ from PIL import Image
 from torchvision import transforms
 from model import get_model
 
-# 🎨 Configuration de la page
+# Configuration de la page
 st.set_page_config(
     page_title="Smart Waste AI",
     page_icon="♻️",
     layout="centered"
 )
 
-# 💅 Style CSS
+# Style CSS
 st.markdown("""
     <style>
     .main { background-color: red; }
@@ -41,7 +41,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 🗑️ Conseils de recyclage
+# Conseils de recyclage
 CONSEILS = {
     "cardboard": ("♻️", "Carton",    "Poubelle jaune", "#ba68c8"),
     "glass":     ("🫙", "Verre",     "Conteneur à verre vert", "#ba68c8 "),
@@ -53,7 +53,7 @@ CONSEILS = {
 
 CLASSES = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
 
-# 🤖 Charger le modèle
+# Charger le modèle
 @st.cache_resource
 def load_model():
     model = get_model(num_classes=6)
@@ -61,7 +61,7 @@ def load_model():
     model.eval()
     return model
 
-# 📏 Préparer l'image
+# Préparer l'image
 def preprocess(image):
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -73,7 +73,7 @@ def preprocess(image):
     ])
     return transform(image).unsqueeze(0)
 
-# 📊 Afficher le résultat
+# Afficher le résultat
 def afficher_resultat(image, classe, confiance):
     emoji, nom, conseil, couleur = CONSEILS[classe]
 
@@ -92,13 +92,13 @@ def afficher_resultat(image, classe, confiance):
     st.markdown("####")
     st.progress(int(confiance))
 
-# 🎨 Titre
+# Titre
 st.markdown('<p class="title">🌍 Smart Waste AI</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Montre un déchet et je te dis où le jeter !</p>', unsafe_allow_html=True)
 
 model = load_model()
 
-# 📷 Deux onglets : Upload et Caméra
+# Deux onglets : Upload et Caméra
 tab1, tab2 = st.tabs(["📁 Upload une image", "📷 Utiliser la caméra"])
 
 # --- Onglet 1 : Upload ---

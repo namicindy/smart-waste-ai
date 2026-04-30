@@ -4,24 +4,24 @@ from torch.optim import Adam
 from model import get_model
 from utils import get_dataloaders
 
-# ⚙️ Paramètres
+# Paramètres
 EPOCHS = 10
 BATCH_SIZE = 32
 LEARNING_RATE = 0.001
 DATA_DIR = "data"
 
-# 📦 Charger les données
+# Charger les données
 train_loader, test_loader, classes = get_dataloaders(DATA_DIR, BATCH_SIZE)
 
-# 🤖 Charger le modèle
+# Charger le modèle
 model = get_model(num_classes=len(classes))
 
-# 📉 Loss function + Optimizer
+# Loss function + Optimizer
 criterion = nn.CrossEntropyLoss()  # mesure les erreurs
 optimizer = Adam(model.fc.parameters(), lr=LEARNING_RATE)  # corrige les erreurs
 
-# 🏋️ Boucle d'entraînement
-print("\n🚀 Entraînement démarré !\n")
+# Boucle d'entraînement
+print("\n Entraînement démarré !\n")
 
 for epoch in range(EPOCHS):
     model.train()
@@ -44,6 +44,6 @@ for epoch in range(EPOCHS):
     accuracy = 100 * correct / total
     print(f"Epoch {epoch+1}/{EPOCHS} → Loss: {total_loss:.2f} | Accuracy: {accuracy:.1f}%")
 
-# 💾 Sauvegarder le modèle
+# Sauvegarder le modèle
 torch.save(model.state_dict(), "model.pth")
-print("\n✅ Modèle sauvegardé dans model.pth !")
+print("\n Modèle sauvegardé dans model.pth !")

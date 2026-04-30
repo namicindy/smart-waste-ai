@@ -53,7 +53,7 @@ CONSEILS = {
 
 CLASSES = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
 
-# Charger le modèle
+# Chargement du modèle
 @st.cache_resource
 def load_model():
     model = get_model(num_classes=6)
@@ -61,7 +61,7 @@ def load_model():
     model.eval()
     return model
 
-# Préparer l'image
+# Prépareration de l'image
 def preprocess(image):
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -73,7 +73,7 @@ def preprocess(image):
     ])
     return transform(image).unsqueeze(0)
 
-# Afficher le résultat
+# Affichage du résultat
 def afficher_resultat(image, classe, confiance):
     emoji, nom, conseil, couleur = CONSEILS[classe]
 
@@ -92,7 +92,7 @@ def afficher_resultat(image, classe, confiance):
     st.markdown("####")
     st.progress(int(confiance))
 
-# Titre
+# Titre de l'app
 st.markdown('<p class="title">🌍 Smart Waste AI</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Montre un déchet et je te dis où le jeter !</p>', unsafe_allow_html=True)
 
@@ -101,7 +101,7 @@ model = load_model()
 # Deux onglets : Upload et Caméra
 tab1, tab2 = st.tabs(["📁 Upload une image", "📷 Utiliser la caméra"])
 
-# --- Onglet 1 : Upload ---
+# Onglet 1 pour l' Upload de l'image
 with tab1:
     uploaded_file = st.file_uploader("Upload une image de déchet", type=["jpg", "jpeg", "png"])
 
@@ -118,7 +118,7 @@ with tab1:
         confiance = confidence.item() * 100
         afficher_resultat(image, classe, confiance)
 
-# --- Onglet 2 : Caméra ---
+#  Onglet 2 pour la Caméra 
 with tab2:
     st.markdown("### 📷 Montre ton déchet à la caméra")
     camera_photo = st.camera_input("Prends une photo !")

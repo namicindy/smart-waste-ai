@@ -10,15 +10,15 @@ BATCH_SIZE = 32
 LEARNING_RATE = 0.001
 DATA_DIR = "data"
 
-# Charger les données
+# Chargement des données
 train_loader, test_loader, classes = get_dataloaders(DATA_DIR, BATCH_SIZE)
 
-# Charger le modèle
+# Chargement du modèle
 model = get_model(num_classes=len(classes))
 
 # Loss function + Optimizer
-criterion = nn.CrossEntropyLoss()  # mesure les erreurs
-optimizer = Adam(model.fc.parameters(), lr=LEARNING_RATE)  # corrige les erreurs
+criterion = nn.CrossEntropyLoss()  # mesuration des erreurs
+optimizer = Adam(model.fc.parameters(), lr=LEARNING_RATE)  # corrirection des erreurs
 
 # Boucle d'entraînement
 print("\n Entraînement démarré !\n")
@@ -33,7 +33,7 @@ for epoch in range(EPOCHS):
         optimizer.zero_grad()          # remettre les gradients à zéro
         outputs = model(images)        # prédiction
         loss = criterion(outputs, labels)  # calcul de l'erreur
-        loss.backward()               # corriger
+        loss.backward()               # correction de l'erreur (calcul des gradients)
         optimizer.step()              # mettre à jour
 
         total_loss += loss.item()

@@ -1,4 +1,4 @@
-# colle ce code dans un fichier check.py et lance : python check.py
+# test des versions des librairies pour éviter les problèmes de compatibilité
 import torch
 import torchvision
 import streamlit

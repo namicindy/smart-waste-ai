@@ -1,10 +1,10 @@
 from torchvision import transforms, datasets
 from torch.utils.data import DataLoader, random_split
 
-# Transformer les images pour le modèle
+# Transformation des images pour le modèle
 def get_transforms():
     return transforms.Compose([
-        transforms.Resize((224, 224)),      # Redimensionner en 224x224
+        transforms.Resize((224, 224)),      # Redimensionnement en 224x224
         transforms.RandomHorizontalFlip(),  # Retourner aléatoirement (data augmentation)
         transforms.ToTensor(),              # Convertir en tensor
         transforms.Normalize(              # Normaliser les couleurs
@@ -13,16 +13,16 @@ def get_transforms():
         )
     ])
 
-# Charger le dataset
+# Chargement du dataset
 def get_dataloaders(data_dir, batch_size=32):
     dataset = datasets.ImageFolder(data_dir, transform=get_transforms())
 
-    # Découper : 80% entraînement, 20% test
+    # Découpaage : 80% entraînement, 20% test
     train_size = int(0.8 * len(dataset))
     test_size = len(dataset) - train_size
     train_data, test_data = random_split(dataset, [train_size, test_size])
 
-    # Créer les dataloaders
+    # Création des dataloaders
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
 

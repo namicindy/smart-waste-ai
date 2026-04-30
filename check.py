@@ -1,4 +1,4 @@
-# colle ce code dans un fichier check.py et lance : python check.py
+# pour tester
 import torch
 import torchvision
 import streamlit

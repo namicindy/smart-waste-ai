@@ -1,24 +1,24 @@
 # 🌍 Smart Waste AI
 
-Une application web qui reconnaît un déchet à partir d'une photo 
+Une application web qui reconnaît un déchet à partir d'une photo ou une caméra
 et indique où le jeter.
 
-## 🎯 Objectif
+## Objectif
 Aider au tri sélectif grâce à l'intelligence artificielle.
 
-## 🤖 Technologie
+## Technologie
 - Modèle : ResNet18 (transfer learning)
 - Framework : PyTorch
 - Interface : Streamlit
 - Dataset : TrashNet (2527 images, 6 classes)
 
-## 📦 Installation
+## Installation
 pip install -r requirements.txt
 
-## 🚀 Lancer l'app
+## Lancer l'app
 streamlit run app.py
 
-## 🗑️ Classes reconnues
+## Classes reconnues
 - Cardboard (carton)
 - Glass (verre)
 - Metal (métal)
@@ -26,6 +26,6 @@ streamlit run app.py
 - Plastic (plastique)
 - Trash (ordures)
 
-## 📊 Performance
+## Performance
 - Accuracy entraînement : 85.8%
 - Accuracy test : 86.4%
